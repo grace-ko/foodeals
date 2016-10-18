@@ -1,0 +1,123 @@
+html, body {
+   	height: 100%;
+   	margin: 0;
+   	padding: 0;
+   	font-family: 'Raleway', sans-serif;
+
+}
+#map {
+    height: 100%;
+    width: 60%;
+    float: right;
+    z-index: 5;
+
+}
+.resultBox{
+  background-color: white;
+
+}
+.left{
+	height:100%;
+	width:40%;
+	float:left;
+  overflow: scroll;
+  background:url('http://www.rd.com/wp-content/uploads/sites/2/2016/01/01-menu-words-to-avoid-diabetes-savvy-diner.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+.logo {
+  margin: 20px 0px 0px 20px;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 5px;
+  font-family: 'Josefin Sans';
+
+}
+h1 {
+  color: #009494;
+  font-size: 30px;
+  text-align: center;
+  display: inline-block;
+
+
+
+}
+.button {
+  margin-left: 20px;
+}
+#submit{
+  background-color: #FF6666;
+  border: 2px solid white;
+  color: white;
+  height: 25px;
+  width: 100px;
+  outline: none;
+  border-radius: 5px;
+
+}
+
+#address {
+  width: 300px;
+  height: 20px;
+  outline: none;
+  background-color: white;
+
+}
+.result{
+  margin-top: 150px;
+  margin-left: 20px;
+  overflow-x:hidden;
+}
+.top{
+  background-color: #FF6666;
+  padding-top: 5px;
+  padding-bottom: 20px;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+}
+img {
+   width: 120px;
+   height: 120px;
+}
+/* Change the white to any color ;) */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    outline:none;
+}
+.resultBox{
+  background-color: white;
+margin-right: 20px;
+padding-left: 20px;
+border-radius: 20px;
+opacity: 0.8;
+}
+
+.finePrint{
+  color: red;
+  display: none;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.name{
+  font-size: 15px;
+  font-weight: bold;
+}
+.pinImage {
+height: 20px;
+margin-left:-40px;
+
+}
+
+.markerLabel{
+ font-weight: bold;
+ font-size: 15px;
+ margin-left: -55px;
+ display: inline-block;
+}
+
+
+
+
