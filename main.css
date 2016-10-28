@@ -1,123 +1,163 @@
+/* General */
 html, body {
-   	height: 100%;
-   	margin: 0;
-   	padding: 0;
-   	font-family: 'Raleway', sans-serif;
+       height: 100%;
+       margin: 0;
+       padding: 0;
+       font-family: Verdana, sans-serif;
+    background-color: #f8f8f9;
+    font-size: 16px;
+    color: #333132;
 
 }
-#map {
-    height: 100%;
-    width: 60%;
-    float: right;
-    z-index: 5;
-
+p {
+  padding: 0;
+  margin:0;
 }
-.resultBox{
-  background-color: white;
 
+/* intro page */
+.frontImage{
+  margin-left:10%;
+  width: 70%;
 }
-.left{
-	height:100%;
-	width:40%;
-	float:left;
-  overflow: scroll;
-  background:url('http://www.rd.com/wp-content/uploads/sites/2/2016/01/01-menu-words-to-avoid-diabetes-savvy-diner.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-
-}
-.logo {
-  margin: 20px 0px 0px 20px;
-  font-size: 40px;
-  font-weight: bold;
-  color: white;
-  margin-bottom: 5px;
-  font-family: 'Josefin Sans';
-
-}
-h1 {
-  color: #009494;
-  font-size: 30px;
+.introText{
   text-align: center;
-  display: inline-block;
-
-
-
-}
-.button {
-  margin-left: 20px;
-}
-#submit{
-  background-color: #FF6666;
-  border: 2px solid white;
+  font-size: 14px;
   color: white;
-  height: 25px;
-  width: 100px;
-  outline: none;
-  border-radius: 5px;
-
+}
+.introButton{
+    background-color: white; 
+    border: none;
+    color: #f26d61;
+    width: 280px;
+    height: 50px;
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 20px;
+    margin-top: 50px;
+}
+.intro{
+  color: white;
+  text-align: center;
+  padding-bottom: 3%;
 }
 
-#address {
-  width: 300px;
-  height: 20px;
-  outline: none;
+/* Left */
+.left{
+  height:100%;
+  width:40%;
+  float:left;
+  margin-left: 7%;
   background-color: white;
-
+  background: url('images/background.png');
+  overflow: scroll;
+  box-shadow: 2px 10px 10px gray;
+  z-index: 50;
 }
-.result{
-  margin-top: 150px;
-  margin-left: 20px;
-  overflow-x:hidden;
-}
+/* Top Search Bar */
 .top{
   background-color: #FF6666;
   padding-top: 5px;
   padding-bottom: 20px;
   position: fixed;
-  width: 100%;
+  width: 40%;
   z-index: 2;
+  height: 12%;
+  background: url('images/background.png');
 }
-img {
-   width: 120px;
-   height: 120px;
+
+.logo{
+  margin-left: 10%;
+  float: left;
+  width: 25%;
+  margin-top: 2%;
 }
-/* Change the white to any color ;) */
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px white inset;
+
+.button input#address{
+  width: 50%;
+  height: 35px;
+  border: none;
+  font-size: 10pt;
+  float: left;
+  color: #63717f;
+  padding-left: 20px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin-left: 5%;
+  margin-top: 5%;
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
     outline:none;
+
+}
+.icon{
+  position: absolute;
+  margin-left: 50%;
+  margin-top: 5%;
+  z-index: 1;
+  color: #f26d61;
+}
+.categoryText{
+  margin-bottom: 10px;
+}
+
+/* Result Section */
+.nameText {
+  color: #f26d61;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 .resultBox{
   background-color: white;
-margin-right: 20px;
-padding-left: 20px;
-border-radius: 20px;
-opacity: 0.8;
+  margin-left: 10%;
+  margin-right: 10%;
+
+}
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+li {
+  list-style: none;
+}
+
+.result{
+  margin-top: 150px;
+  margin-left: 20px;
+  overflow-x: hidden;
 }
 
 .finePrint{
-  color: red;
   display: none;
   margin-left: 10px;
   margin-right: 10px;
-}
-.name{
-  font-size: 15px;
-  font-weight: bold;
-}
-.pinImage {
-height: 20px;
-margin-left:-40px;
-
+  font-size: 10px;
 }
 
-.markerLabel{
- font-weight: bold;
- font-size: 15px;
- margin-left: -55px;
- display: inline-block;
+a {
+  color: #214696;
+  text-decoration: none;
+}
+.introText-two {
+  margin-top: 10px;
+  font-size: 10px;
+  text-align: center;
+  color: white;
 }
 
 
+/* Map Area */
 
+#map {
+    height: 100%;
+    width: 46%;
+    float: right;
+    margin-right: 7%;
+    box-shadow: 2px 10px 10px gray;
+
+}
 

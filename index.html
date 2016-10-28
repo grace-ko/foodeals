@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Foodeals</title>
     <link rel="stylesheet" type="text/css" href="main.css">
-
-
+    <link rel="stylesheet" media="(max-width: 1200px)" href="max-1200px.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway|Catamaran" rel="stylesheet">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
 </head>
 <body>
 
     <div class="left">
     <div class="top">
-		<p class="logo">f o o d e a l s</p>
-    	<div class="button">
-      		<input id="address" type="textbox" placeholder="123 Main St San Francisco, CA">
-      		<input id="submit" type="button" value="Submit">
-    	</div>
+        <img src="images/logo.png" class="logo">
+
+
+        <div class="button">
+            <span class="icon"><i class="fa fa-search fa-2x"></i></span>
+              <input id="address" type="textbox" placeholder="123 Main St San Francisco, CA" />
+    </div>
         </div>
-		<div class="result">
+            <div class="result">
+            <div class="frontPage">
+            <img src="images/logo.png" class="frontImage">
+            <p class="intro">Find great deals at local restaurants!</p>
+            <p class="introText">Created with:</p>
+            <p class="introText">Groupon</p>
+            <p class="introText">yelp</p>
+            <p class="introText">Google Map API</p>
+          
+            <button class="introButton">Let's Go!</button>
+            <p class="introText-two">Coded by Grace Ko</p>
+            </div>
+                <div class="resultBox">
+                </div>
+            </div>
 
-        <div class="resultBox">
 
-        </div>
-
-
-
-
-		</div>
-	</div>
-	
+    </div>
     <div id="map"></div>
 
 
@@ -44,7 +49,5 @@
 
     </script>
 
-    </script>
-    </script>
     </body>
 </html>

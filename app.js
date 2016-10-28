@@ -1,139 +1,195 @@
-      
-function initMap() {
-        //display default map
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: {lat: 37.3382, lng: -121.8863}
-        });
-        var geocoder = new google.maps.Geocoder();
 
-        $('#submit').click(function() {
-          geocodeAddress(geocoder, map);
-        });
+$('.logo').hide();
+$('input').hide();
+$('.introButton').click(function(){
+  $('.left').css("background","white")
+  $('.introButton').remove();
+  $('.logo').show();
+  $('input').show();
+  $('.frontPage').remove();
+});
+
+
+  
+function initMap() {
+//display default map
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: {lat: 37.3382, lng: -121.8863}
+    });
+    var geocoder = new google.maps.Geocoder();
+
+    $('.icon').click(function() {
+        geocodeAddress(geocoder, map);
+    
+    });
+    $(document).keypress(function(e){
+        if (e.which==13){
+            geocodeAddress(geocoder, map);
+        }
+    });
 }
 
 
-        //generate lat & lng from user's address input
+//generate lat & lng from user's address input
 function geocodeAddress(geocoder, resultsMap) {
-        var address = $('#address').val();
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
+    var address = $('#address').val();
+    geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location
+                map: resultsMap,
+                position: results[0].geometry.location
             });
 
             //calculate address
             var lat=((results[0].geometry.viewport.f.b)+(results[0].geometry.viewport.f.f))/2;
             var lng=((results[0].geometry.viewport.b.b)+(results[0].geometry.viewport.b.f))/2;
-           
             console.log(lat, lng);
-          
+
             //run Groupon API
             getData(lat, lng);
             function getData(a, b){
-              $.ajax({
-                url: 'https://partner-api.groupon.com/deals.json',
-                data: {     
-                  tsToken:'US_AFF_0_206568_212556_0',
-                  lat: a,
-                  lng: b,
-                  filters:'category:food-and-drink',
-                  radius:10,
-                  offset:0,
-                  limit: 10
-                },
-                dataType: 'jsonp',
-                crossDomain: true,
-                type: 'GET',
+                $.ajax({
+                    url: 'https://partner-api.groupon.com/deals.json',
+                    data: {     
+                        tsToken:'US_AFF_0_206568_212556_0',
+                        lat: a,
+                        lng: b,
+                        filters:'category:food-and-drink',
+                        radius:10,
+                        offset:0,
+                        limit: 10
+                    },
+                    dataType: 'jsonp',
+                    crossDomain: true,
+                    type: 'GET',
 
 
+            //display results
+            success: function(data){
 
-                //display results
-                success: function(data){
-                    $('.resultBox').html('');
-                    var result=data.deals;
-                    console.log(result.length);
-                    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                    var labelIndex = 0;
+                $('.resultBox').html('');
+                var result=data.deals;
+                console.log(result.length);
+                var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                var labelIndex = 0;
 
-                    
-                      $.each(result, function(index, value){
-                      console.log(value);
-                      var name=value.merchant.name;
-                      var category=value.tags[0].name;
-                      var street=value.options[0].redemptionLocations[0].streetAddress1;
-                      var city=value.options[0].redemptionLocations[0].city;
-                      var phone=value.options[0].redemptionLocations[0].phoneNumber;
-                      var webUrl=value.merchant.websiteUrl;
-                      var finePrint=value.finePrint; 
-                      var mapPinInfo='<p class="name">'+name+'</p><p>'+street+'</p><p>'+
-                      city+'</p><p>'+phone+'</p>';
+                $.each(result, function(index, value){
+                    console.log(value);
+                    var name=value.merchant.name;
+                    var category=value.tags[0].name;
+                    var street=value.options[0].redemptionLocations[0].streetAddress1;
+                    var city=value.options[0].redemptionLocations[0].city;
+                    var state=value.options[0].redemptionLocations[0].state;
+                    var phone=value.options[0].redemptionLocations[0].phoneNumber;
+                    var webUrl=value.merchant.websiteUrl;
+                    var finePrint=value.finePrint; 
+                    var grouponImg=value.grid4ImageUrl;
 
-                      ;
-                      //pin on map
-                      var coords = value.options[0].redemptionLocations[0];
-                      var latLng = new google.maps.LatLng(coords.lat,coords.lng);
-                      
-                      var marker = new google.maps.Marker({
+                    var mapPinInfo='<p class="name">'+name+'</p><p>'+street+'</p><p>'+
+                    city+'</p><p>'+phone+'</p>';
+
+                    //pin on map
+                    var coords = value.options[0].redemptionLocations[0];
+                    var latLng = new google.maps.LatLng(coords.lat,coords.lng);
+
+                    var marker = new google.maps.Marker({
                         position: latLng,
                         label: labels[labelIndex++ % labels.length],
                         map: resultsMap
-          
-                      }); 
-                      var markerLabel=marker.label;
-                      console.log(markerLabel);
+                    }); 
+                    var markerLabel=marker.label;
+                    console.log(markerLabel);
 
-                      //show restaurant name on map
-                      var infowindow = new google.maps.InfoWindow({
+                    //show restaurant name on map
+                    var infowindow = new google.maps.InfoWindow({
                         content: mapPinInfo
-                      });
+                    });
 
-                      marker.addListener('click', function(){
+                    marker.addListener('click', function(){
                         infowindow.open(map, marker);
-                      });
-                   
+                    });
 
-                      //add result 
-                      var purchasehtml='';
 
-                      for (var i=0; i<value.options.length; i++){
+                    //add result 
+                    var purchasehtml='';
+
+                    for (var i=0; i<value.options.length; i++){
                         purchasehtml+='<p><a href="'+value.options[i].buyUrl+'" target="_blank">';
                         purchasehtml+=value.options[i].title+'</a></p>';      
-                      }
-                
-                      $('.resultBox').append('<div class="result-item"><h1>'+name+'</h1>'+
-                        '<img src="pin.svg" class="pinImage"><p class="markerLabel">'
-                        +markerLabel+'</p><p>'+category+'</p>'+
-                        '<img src="foodone.jpg" alt="yelp images and rating">'+
-                        '<img src="foodtwo.jpg" alt="yelp images and rating">'+
-                        '<img src="foodthree.jpg" alt="yelp images and rating">'+
-                        '<p>'+"Purchase Options:"+'</p>'+
-                        '<p>'+purchasehtml+'</p>'+
-                        '<p>'+"Make a Reservation"+'</p>'+
-                        '<p class="fineprintContent">'+"finePrint"+'</p>'+
-                        '<div class="finePrint">'+finePrint+' (click to hide)'+'</div></div>');
-                    });
-                 
-                    $('.fineprintContent').click(function(){
-                      $(this).siblings('.finePrint').show();
-                    });
-                    $('.finePrint').click(function(){
-                      $('.finePrint').hide();
-                    });
-  
+                    }
 
-                }
-              });
+                    //call yelp API
+                    function yelpData(name, city, markerLabel, category, grouponImg, purchasehtml, finePrint){
+                    //correct url name for yelp 
+                        var yelpName =name.split(' ').join('-').toLowerCase();
+                        var yelpCity =city.split(' ').join('-').toLowerCase();
+                        var url='https://quiet-springs-39660.herokuapp.com/api/business/'+yelpName+'-'+yelpCity+'';
+                        $.getJSON(url, function(data){
+                          
+                            if (data.statusCode==400){
+                              var rating="http://i.imgur.com/TLAwcxg.jpg";
+                              var reviewCount=0;
+                            } else {
+                              var rating=data.rating_img_url;
+                              var reviewCount=data.review_count;
+                            }
+                            // console.log(name, city, state);
+
+                            /* $.ajax({
+                              url: 'http://opentable.heroku.com/api/restaurants',
+                              data: {     
+                                    name:name,
+                                    city:city,
+                                    state:state
+                              },
+                              dataType: 'jsonp',
+                              crossDomain: true,
+                              type: 'GET', 
+                              success: function(otData){ */
+
+                                $('.resultBox').append('<div class="resultText"><p class="nameText">'+
+                                    markerLabel+'. '+name+'</p>'+
+                                    '<p class="categoryText">'+category+'</p><img src="'+grouponImg+'">'+'<p>'+
+                                    '<img src="'+rating+'" alt="yelp rating">'+" "+reviewCount+' Reviews'+'</p>'+
+                                    '<img src="images/dealicon.png">'+"Purchase Options:"+'<ul><li>'+
+                                    purchasehtml+'</li></ul>'+ /*'<img src="images/rsvpicon.png">'+" "+
+                                    '<a href="'+otData.restaurants[0].reserve_url+'">Make a Reservation</a>'*/
+                                    '<div class="fineprintContent">'+
+                                    '<img src="images/printicon.png">'+" "+"finePrint"+'</div>'+
+                                    '<div class="finePrint">'+finePrint+'(click to hide)'+'</div>'+
+                                    '<hr>');
+
+                                    $('.fineprintContent').click(function(){
+                                        $(this).siblings('.finePrint').show();
+                                    });
+                                    $('.finePrint').click(function(){
+                                        $('.finePrint').hide();
+                                    });
+                             // }
+                        });                           
+
+
+
+                       // }); 
+                    };
+                    yelpData(name, city, markerLabel, category, grouponImg, purchasehtml, finePrint);
+
+                });
+
+
             }
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
         });
+    }
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
 
 }
 
+   
 
 
 
