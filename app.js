@@ -88,7 +88,7 @@ function geocodeAddress(geocoder, resultsMap) {
                     var grouponImg=value.grid4ImageUrl;
 
                     var mapPinInfo='<p class="name">'+name+'</p><p>'+street+'</p><p>'+
-                    city+'</p><p>'+phone+'</p>';
+                    city+'</p><p>'+phone+'</p><p><a href="https://www.google.com/maps/dir/Current+Location/'+street+'+'+city+'+'+state+'" target="_blank">Driving Directions</a></p>';
 
                     //pin on map
                     var coords = value.options[0].redemptionLocations[0];
@@ -110,7 +110,7 @@ function geocodeAddress(geocoder, resultsMap) {
 
                     marker.addListener('click', function(){
                         if (lastInfo){
-                          lastInfo.close();
+                          lastInfo.close(); 
                         }
                         lastInfo=infowindow;
                         infowindow.open(map, marker);
