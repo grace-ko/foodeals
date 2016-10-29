@@ -74,7 +74,7 @@ function geocodeAddress(geocoder, resultsMap) {
                 console.log(result.length);
                 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
                 var labelIndex = 0;
-
+                var lastInfo;
                 $.each(result, function(index, value){
                     console.log(value);
                     var name=value.merchant.name;
@@ -107,7 +107,12 @@ function geocodeAddress(geocoder, resultsMap) {
                         content: mapPinInfo
                     });
 
+
                     marker.addListener('click', function(){
+                        if (lastInfo){
+                          lastInfo.close();
+                        }
+                        lastInfo=infowindow;
                         infowindow.open(map, marker);
                     });
 
