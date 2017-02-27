@@ -1,53 +1,37 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Foodeals</title>
     <link rel="stylesheet" type="text/css" href="main.css">
-    <link rel="stylesheet" media="(max-width: 1200px)" href="max-1200px.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
 </head>
+
 <body>
-
     <div class="left">
-    <div class="top">
-        <img src="images/logo.png" class="logo">
-
-
-        <div class="button">
-            <span class="icon"><i class="fa fa-search fa-2x"></i></span>
-              <input id="address" type="textbox" placeholder="123 Main St San Francisco, CA" />
-    </div>
+        <div class="topSearch">
+            <a href="index.html"><img src="images/logo.png" class="logo"></a>
+            <input id="address" type="textbox" placeholder="123 Main St San Francisco, CA" />
+            <div class="icon"><i class="fa fa-search fa-2x"></i></div>
         </div>
-            <div class="result">
+        <div class="result">
             <div class="frontPage">
-            <img src="images/logo.png" class="frontImage">
-            <p class="intro">Find great deals at local restaurants!</p>
-            <p class="introText">Created with:</p>
-            <p class="introText">Groupon</p>
-            <p class="introText">yelp</p>
-            <p class="introText">Google Map API</p>
-          
-            <button class="introButton">Let's Go!</button>
-            <p class="introText-two">Coded by Grace Ko</p>
+                <img src="images/logo.png" class="frontImage">
+                <p class="introText">One stop search for restaurant Groupon deals with Yelp ratings and number of reviews, and Google Map directions!</p>
+                <button class="letsgoButton">Let's Go!</button>
+                <p class="copyright">&#169; Grace Ko 2017</p>
             </div>
-                <div class="resultBox">
-                </div>
+            <div class="resultSection">
             </div>
-
-
+        </div>
     </div>
     <div id="map"></div>
-
-
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="app.js"></script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7DWv_t0uw1HOvuzX7UjTQg_CY4MlORxY&callback=initMap">
-
-
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7DWv_t0uw1HOvuzX7UjTQg_CY4MlORxY&callback=initMap">
     </script>
+</body>
 
-    </body>
 </html>
